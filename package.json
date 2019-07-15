@@ -1,0 +1,16 @@
+{
+  "name": "@cardea/root",
+  "description": "@cardea | Lerna Root Package",
+  "private": true,
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "lerna": "^3.15.0",
+    "@commitlint/cli": "^8.0.0",
+    "@commitlint/config-conventional": "^8.0.0",
+    "husky": "^3.0.0"
+  }
+}
