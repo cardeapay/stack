@@ -157,49 +157,57 @@ Functional requirements capture the intended behaviour of the Cardea Services.
 
 The notation `Member(owner / admin)` would translate to `is a member with owner or admin rights`.
 
+You can find three different actor:
+
+- `Unauthenticated User` is someone on which we have no informations.
+- `Cardea Pro User` is someone with a Pro Account, used to manage, create Organizations ...
+- `Cardea User` is someone with a Regular Account, used to make payments
+
+`Cardea Pro User`
+
 | Actor | Goal |
 | :---: | :---: |
-| Cardea User | Create Pro Account |
-| Cardea User | Edit Pro Account |
-| Cardea User | Delete Pro Account |
-| Cardea User | Log In |
+| Unauthenticated User | Create Pro Account |
+| Cardea Pro User | Edit Pro Account |
+| Cardea Pro User | Delete Pro Account |
+| Unauthenticated User | Log In |
+| Cardea Pro User | Log Out |
+| Cardea Pro User | List Organizations |
+| Cardea Pro User | Create Organizations |
+| Cardea Pro User | Leave Organizations |
+| Cardea Pro User + Member(`owner` / `admin`) | Edit Organization Informations |
+| Cardea Pro User + Member(`owner`) | Delete Organization |
+| Cardea Pro User + Member() | List Cardea Pro Users from Organization |
+| Cardea Pro User + Member(`owner` / `admin`) | Invite Cardea Pro User in Organization |
+| Cardea Pro User + Member(`owner` / `admin`) | Kick Cardea Pro User from Organization |
+| Cardea Pro User + Member(`owner` / `admin`) | Edit Cardea Pro User Rights |
+| Cardea Pro User + Member(`owner` / `admin` / `payment`) | Get Bank Informations |
+| Cardea Pro User + Member(`owner` / `admin` / `payment`) | Edit Bank Informations |
+| Cardea Pro User + Member(`owner` / `admin` / `payment`) | Remove Bank Informations |
+| Cardea Pro User + Member(`owner` / `admin` / `payment`) | Get Current Funds |
+| Cardea Pro User + Member(`owner` / `admin` / `payment`) | Withdraw Funds to Bank |
+| Cardea Pro User + Member(`owner` / `admin` / `payment`) | Get Payments |
+| Cardea Pro User + Member() | Get Contracts |
+| Cardea Pro User + Member(`owner` / `admin` / `contract`) | Add Contract |
+| Cardea Pro User + Member(`owner` / `admin` / `contract`) | Remove Contract |
+| Cardea Pro User + Member() | Get Methods |
+| Cardea Pro User + Member(`owner` / `admin` / `contract`) | Add Method to Contract |
+| Cardea Pro User + Member(`owner` / `admin` / `contract`) | Remove Method from Contract |
+| Cardea Pro User + Member() | Get Methods Token |
+| Cardea Pro User + Member() | Get WebApps |
+| Cardea Pro User + Member(`owner` / `admin` / `webapp`) | Add WebApp |
+| Cardea Pro User + Member(`owner` / `admin` / `webapp`) | Remove WebApp |
+| Cardea Pro User + Member() | Get Method Authorizations |
+| Cardea Pro User + Member(`owner` / `admin` / `webapp`) | Add Method Authorization to WebApp |
+| Cardea Pro User + Member(`owner` / `admin` / `webapp`) | Remove Method Authorization |
+| Unauthenticated User | Submit Method Informations |
+| Unauthenticated User | Create Regular Account |
+| Unauthenticated User | Log In |
 | Cardea User | Log Out |
-| Cardea User | List Organizations |
-| Cardea User | Create Organizations |
-| Cardea User | Leave Organizations |
-| Cardea User, Member(`owner` / `admin`) | Edit Organization Informations |
-| Cardea User, Member(`owner`) | Delete Organization |
-| Cardea User, Member() | List Users from Organization |
-| Cardea User, Member(`owner` / `admin`) | Invite User in Organization |
-| Cardea User, Member(`owner` / `admin`) | Kick User from Organization |
-| Cardea User, Member(`owner` / `admin`) | Edit User Rights |
-| Cardea User, Member(`owner` / `admin` / `payment`) | Get Bank Informations |
-| Cardea User, Member(`owner` / `admin` / `payment`) | Edit Bank Informations |
-| Cardea User, Member(`owner` / `admin` / `payment`) | Remove Bank Informations |
-| Cardea User, Member(`owner` / `admin` / `payment`) | Get Current Funds |
-| Cardea User, Member(`owner` / `admin` / `payment`) | Withdraw Funds to Bank |
-| Cardea User, Member(`owner` / `admin` / `payment`) | Get Payments |
-| Cardea User, Member() | Get Contracts |
-| Cardea User, Member(`owner` / `admin` / `contract`) | Add Contract |
-| Cardea User, Member(`owner` / `admin` / `contract`) | Remove Contract |
-| Cardea User, Member() | Get Methods |
-| Cardea User, Member(`owner` / `admin` / `contract`) | Add Method to Contract |
-| Cardea User, Member(`owner` / `admin` / `contract`) | Remove Method from Contract |
-| Cardea User, Member() | Get Methods Token |
-| Cardea User, Member() | Get WebApps |
-| Cardea User, Member(`owner` / `admin` / `webapp`) | Add WebApp |
-| Cardea User, Member(`owner` / `admin` / `webapp`) | Remove WebApp |
-| Cardea User, Member() | Get Method Authorizations |
-| Cardea User, Member(`owner` / `admin` / `webapp`) | Add Method Authorization to WebApp |
-| Cardea User, Member(`owner` / `admin` / `webapp`) | Remove Method Authorization |
-| Dapp User | Submit Method Informations |
-| Dapp User | Create Account |
-| Dapp User | Log In |
-| Dapp User | Log Out |
-| Dapp User | Edit Account |
-| Dapp User | Delete Account |
-| Dapp User | Pay Intent |
-| Dapp User | Verify Address |
+| Cardea User | Edit Regular Account |
+| Cardea User | Delete Regular Account |
+| Cardea User | Pay Intent |
+| Cardea User | Verify Address |
 
 ### 3.1.2. Use Case View
 <a name="3_1_2_use_case_view"></a>
@@ -267,17 +275,17 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Create Pro Account |
 | Code | `CAUM1` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
+| Primary Actor | Unauthenticated User |
 | Preconditions | User provides valid credentials |
-| Postconditions | New account is created with given credentials |
+| Postconditions | New pro account is created with given credentials |
 
 | []() | |
 | :---: | :---: |
 | Name | Edit Pro Account |
 | Code | `CAUM2` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User provides valid account informations |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User provides valid account informations |
 | Postconditions | Account informations are modified with new provided informations |
 
 | []() | |
@@ -285,8 +293,8 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Delete Pro Account |
 | Code | `CAUM3` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is not an owner of an organization |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is not an owner of an Organization |
 | Postconditions | Account and all informations are removed from the database |
 
 | []() | |
@@ -294,45 +302,45 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Log In |
 | Code | `CAUM4` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is not logged in, User provides valid credentials |
-| Postconditions | A session token is generated and sent to the User |
+| Primary Actor | Unauthenticated User |
+| Preconditions | Unauthenticated User is not logged in, Unauthenticated User provides valid credentials |
+| Postconditions | A session token is generated and sent to the Unauthenticated User |
 
 | []() | |
 | :---: | :---: |
 | Name | Log Out |
 | Code | `CAUM5` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in |
-| Postconditions | Current session token is invalidated |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in |
+| Postconditions | Current session token is unvalidated |
 
 | []() | |
 | :---: | :---: |
 | Name | List Organizations |
 | Code | `CAUM6` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in |
-| Postconditions | A list with all organizations where the User is member is sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in |
+| Postconditions | A list with all Organizations where the Cardea Pro User is member is sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
 | Name | Create Organization |
 | Code | `CAUM7` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, valid organization informations are provided |
-| Postconditions | A new organization is created, User is member and has `owner` right |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, valid Organization informations are provided |
+| Postconditions | A new Organization is created, Cardea Pro User is member and has `owner` right |
 
 | []() | |
 | :---: | :---: |
 | Name | Leave Organization |
 | Code | `CAUM8` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User is not owner of organization |
-| Postconditions | User is removed from the member list of target organization |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User is not owner of Organization |
+| Postconditions | Cardea Pro User is removed from the member list of target Organization |
 
 #### Cardea App (Organization Management) (CAOM)
 
@@ -341,8 +349,8 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Edit Organization Informations |
 | Code | `CAOM1` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` rights, valid organization informations are provided |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` rights, valid Organization informations are provided |
 | Postconditions | Organization informations are modified |
 
 | []() | |
@@ -350,45 +358,45 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Delete Organization |
 | Code | `CAOM2` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner` rights, Organization's balance is 0 |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner` rights, Organization's balance is 0 |
 | Postconditions | Organization is deleted |
 
 | []() | |
 | :---: | :---: |
-| Name | List Users from Organization |
+| Name | List Cardea Pro Users from Organization |
 | Code | `CAOM3` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization |
-| Postconditions | A list of the Organization's members is sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization |
+| Postconditions | A list of the Organization's members is sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
-| Name | Invite User in Organization |
+| Name | Invite Cardea Pro User in Organization |
 | Code | `CAOM4` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner` or `admin` rights, Target User is not already a member of the Organization |
-| Postconditions | Target User is added to the Organization |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of organization, Cardea Pro User has `owner` or `admin` rights, Target Cardea Pro User is not already a member of the Organization |
+| Postconditions | Target Cardea Pro User is added to the Organization |
 
 | []() | |
 | :---: | :---: |
-| Name | Kick User from Organization |
+| Name | Kick Cardea Pro User from Organization |
 | Code | `CAOM5` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner` or `admin` rights, Target User is a member of Organization. If Target User has `admin` rights, `owner` right is required. User with `owner` rights cannot be kicked. |
-| Postconditions | Target User is removed from the Organization |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner` or `admin` rights, Target Cardea Pro User is a member of Organization. If Target Cardea Pro User has `admin` rights, `owner` right is required. Cardea Pro User with `owner` rights cannot be kicked. |
+| Postconditions | Target Cardea Pro User is removed from the Organization |
 
 | []() | |
 | :---: | :---: |
-| Name | Edit User Rights |
+| Name | Edit Cardea Pro User Rights |
 | Code | `CAOM6` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner` or `admin` rights, Target User is a member of Organization. Only `owner` can set `admin` rights. Only `owner` can change current `owner` |
-| Postconditions | Target User's rights are modified |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner` or `admin` rights, Target Cardea Pro User is a member of Organization. Only `owner` can set `admin` rights. Only `owner` can change current `owner` |
+| Postconditions | Target Cardea Pro User's rights are modified |
 
 #### Cardea App (Organization Payments) (CAOP)
 
@@ -397,17 +405,17 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Get Bank Informations |
 | Code | `CAOP1` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `payment` rights |
-| Postconditions | Bank informations are sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of organization, Cardea Pro User has `owner`, `admin` or `payment` rights |
+| Postconditions | Bank informations are sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
 | Name | Edit Bank Informations |
 | Code | `CAOP2` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `payment` rights, valid Bank Informations are provided |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `payment` rights, valid Bank Informations are provided |
 | Postconditions | Bank Informations are modified |
 
 | []() | |
@@ -415,8 +423,8 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Remove Bank Informations |
 | Code | `CAOP3` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `payment` rights |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of organization, Cardea Pro User has `owner`, `admin` or `payment` rights |
 | Postconditions | Bank Informations are removed |
 
 | []() | |
@@ -424,17 +432,17 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Get Current Funds |
 | Code | `CAOP4` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `payment` rights |
-| Postconditions | Organization funds are sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea pro User has `owner`, `admin` or `payment` rights |
+| Postconditions | Organization current balance value is sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
 | Name | Withdraw Funds to Bank |
 | Code | `CAOP5` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `payment` rights |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `payment` rights |
 | Postconditions | Process to send funds to Bank account is started |
 
 | []() | |
@@ -442,9 +450,9 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Get Payments |
 | Code | `CAOP6` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `payment` rights |
-| Postconditions | A list of payments made to the organization is sent to the user |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of organization, Cardea Pro User has `owner`, `admin` or `payment` rights |
+| Postconditions | A list of payments made to the organization is sent to the Cardea Pro User |
 
 #### Cardea App (Organization Contract Interface) (CAOCI)
 
@@ -453,17 +461,17 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Get Contracts |
 | Code | `CAOCI1` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization |
-| Postconditions | A list of the smart contracts used by the Organization is sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization |
+| Postconditions | A list of the smart contracts used by the Organization is sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
 | Name | Add Contract |
 | Code | `CAOCI2` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `contracts` rights, valid contract informations are provided |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `contracts` rights, valid Contract informations are provided |
 | Postconditions | The provided contract is added to the Organization |
 
 | []() | |
@@ -471,45 +479,45 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Remove Contract |
 | Code | `CAOCI3` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `contracts` rights, Contract is linked to the Organization |
-| Postconditions | The provided contract is removed from the Organization |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `contracts` rights, Contract is linked to the Organization |
+| Postconditions | The provided Contract is removed from the Organization |
 
 | []() | |
 | :---: | :---: |
 | Name | Get Methods |
 | Code | `CAOCI4` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization |
-| Postconditions | Contract methods added to the Organization are sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization |
+| Postconditions | Contract methods added to the Organization are sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
 | Name | Add Method to Contract |
 | Code | `CAOCI5` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `contracts` rights, Contract is linked to Organization, Method is valid |
-| Postconditions | Provided method is added to the target Contract |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `contracts` rights, Contract is linked to Organization, Method is valid |
+| Postconditions | Provided Method is added to the target Contract |
 
 | []() | |
 | :---: | :---: |
 | Name | Remove Method from Contract |
 | Code | `CAOCI6` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `contracts` rights, Contract is linked to Organization, Method is linked to Contract |
-| Postconditions | Provided method is removed from the target Contract |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `contracts` rights, Contract is linked to Organization, Method is linked to Contract |
+| Postconditions | Provided Method is removed from the target Contract |
 
 | []() | |
 | :---: | :---: |
 | Name | Get Method Tokens |
 | Code | `CAOCI7` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization |
-| Postconditions | All Tokens from all methods from all contracts of the organization are sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization |
+| Postconditions | All Tokens from all Methods from all Contracts of the Organization are sent to the Cardea Pro User |
 
 #### Cardea App (Organization Webapp Interface) (CAOWI)
 
@@ -518,17 +526,17 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Get WebApps |
 | Code | `CAOWI1` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization |
-| Postconditions | All Webapps linked to the Organization are sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization |
+| Postconditions | All WebApps linked to the Organization are sent to the Cardea Pro User |
  
 | []() | |
 | :---: | :---: |
 | Name | Add WebApp |
 | Code | `CAOWI2` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `webapp` rights, valid WebApp informations are provided |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `webapp` rights, valid WebApp informations are provided |
 | Postconditions | New WebApp is added to the Organization |
 
 | []() | |
@@ -536,8 +544,8 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Remove WebApp |
 | Code | `CAOWI3` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin` or `webapp` rights, Webapp is linked to Organization |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `webapp` rights, WebApp is linked to Organization |
 | Postconditions | Provided WebApp is removed from Organization |
 
 | []() | |
@@ -545,17 +553,17 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Get Method Authorizations |
 | Code | `CAOWI4` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization |
-| Postconditions | All Method Authorizations for all WebApps are sent to the User |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization |
+| Postconditions | All Method Authorizations for all WebApps are sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
 | Name | Add Method Authorization to WebApp |
 | Code | `CAOWI5` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin`, or `webapp` rights, valid Method is provided, valid WebApp is provided |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin`, or `webapp` rights, valid Method is provided, valid WebApp is provided |
 | Postconditions | Method Authorization is added to the WebApp |
 
 | []() | |
@@ -563,8 +571,8 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Remove Method Authorization |
 | Code | `CAOWI6` |
 | Importance | Critical |
-| Primary Actor | Cardea User |
-| Preconditions | User is logged in, User is member of organization, User has `owner`, `admin`, or `webapp` rights, Method Authorization exists |
+| Primary Actor | Cardea Pro User |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin`, or `webapp` rights, Method Authorization exists |
 | Postconditions | Method Authorization is removed from the WebApp |
 
 #### Cardea Widget (CW)
@@ -574,18 +582,18 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Submit Method Informations |
 | Code | `CACW1` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
-| Preconditions | Method informations are provided (if required), Payment informations are provided (if required), User informations are provided (if required) |
-| Postconditions | Payment Intent is created, User is redirected to Cardea Portal with generated Payment Intent |
+| Primary Actor | Unauthenticated User |
+| Preconditions | Method informations are provided (if required), Payment informations are provided (if required) |
+| Postconditions | Payment Intent is created, Unauthenticated User is redirected to Cardea Portal with generated Payment Intent |
 
 #### Cardea Portal (CP)
 
 | []() | |
 | :---: | :---: |
-| Name | Create Account |
+| Name | Create Regular Account |
 | Code | `CACP1` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
+| Primary Actor | Unauthenticated User |
 | Preconditions | Provided crendentials are valid |
 | Postconditions | Account is created |
 
@@ -594,35 +602,35 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Log In |
 | Code | `CACP2` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
-| Preconditions | User is not logged in, User provides valid credentials |
-| Postconditions | A session token is generated and sent to the User |
+| Primary Actor | Unauthenticated User |
+| Preconditions | Unauthenticated User is not logged in, Unauthenticated User provides valid credentials |
+| Postconditions | A session token is generated and sent to the Unauthenticated User |
 
 | []() | |
 | :---: | :---: |
 | Name | Log Out |
 | Code | `CACP3` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
-| Preconditions | User is logged in |
-| Postconditions | Current session token is invalidated |
+| Primary Actor | Cardea User |
+| Preconditions | Cardea User is logged in |
+| Postconditions | Current session token is unvalidated |
 
 | []() | |
 | :---: | :---: |
-| Name | Edit Account |
+| Name | Edit Regular Account |
 | Code | `CACP4` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
-| Preconditions | User is logged in, User provides valid account informations |
+| Primary Actor | Cardea User |
+| Preconditions | Cardea User is logged in, Cardea User provides valid account informations |
 | Postconditions | Account informations are modified with new provided informations |
 
 | []() | |
 | :---: | :---: |
-| Name | Delete Account |
+| Name | Delete Regular Account |
 | Code | `CACP5` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
-| Preconditions | User is logged in, User is not an owner of an organization |
+| Primary Actor | Cardea User |
+| Preconditions | Cardea User is logged in |
 | Postconditions | Account and all informations are removed from the database |
 
 | []() | |
@@ -630,8 +638,8 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Pay Intent |
 | Code | `CACP6` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
-| Preconditions | User is logged in, valid Payment Intent is provided, Valid payment is made |
+| Primary Actor | Cardea User |
+| Preconditions | Cardea User is logged in, valid Payment Intent is provided, Valid payment is made |
 | Postconditions | Starts Resolution of Payment Intent Process and Ethereum Transaction Process |
 
 | []() | |
@@ -639,8 +647,8 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 | Name | Verify Address |
 | Code | `CACP7` |
 | Importance | Critical |
-| Primary Actor | Dapp User |
-| Preconditions | User is logged in, feature is required or enabled during `CACP6` |
+| Primary Actor | Cardea User |
+| Preconditions | Cardea User is logged in, feature is required or enabled during `CACP6` |
 | Postconditions | Adds the current payment solution hash to the Ethereum Address of the account |
 
 ## 3.2. Non-Functional Requirements
