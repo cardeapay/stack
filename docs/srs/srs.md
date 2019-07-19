@@ -4,13 +4,14 @@
 
 | Version | Prepared By | Email |
 | :---:   | :---:       | :---: |
-| 1.0 | Iulian Rotaru | iulian.rotaru@ticket721.com |
+| 1.1 | Iulian Rotaru | iulian.rotaru@ticket721.com |
 
 ## Document History
 
 | Version | Date | Description | Author |
 | :---:   | :---: | :---:      | :---:  |
 | 1.0 | 14/07/2019 | Initial Documentation | Iulian Rotaru |
+| 1.1 | 19/07/2019 | User Types Clarifications | Iulian Rotaru |
 
 ## Table of contents
 
@@ -63,6 +64,10 @@ This document is accessible by all the Cardea team. Only technical and product t
 | :---:        | :---:       |
 | `sdk`        | `software development kit` |
 | `api`        | `application public inteface` |
+| `Cardea User` | User with Regular Account on the platform (can make payments, cannot join or create Organizations) |
+| `Cardea Pro User` | User with Pro Account on the platform (cannot make payments, can koin or create Organizations) |
+| `Unauthenticated User` | User not logged in the Cardea Platform |
+| `Dapp` | Decentralized Application (in our case, using the Ethereum Virtual Machine) |
 
 # 2. Overall description
 <a name="2_overall_description"></a>
@@ -95,10 +100,6 @@ The **Cardea Contracts** are a set of smart contracts on the Ethereum blockchain
 
 Together, they form the **Cardea Platform**.
 
-What is mentioned as the **Cardea user** is a business member with a pro account on the platform. It has the ability to create/join/edit organizations and setup payment channels on their applications.
-
-What is mentioned as the **Dapp user** is a user that has a normal account and uses its credit card to pay for transactions on the Ethereum Blockchain.
-
 ## 2.2. Product Functions
 <a name="2_2_product_functions"></a>
 
@@ -111,20 +112,18 @@ To make an example, imagine a contract selling tickets. This contract requires a
 ## 2.3. User Characteristics
 <a name="2_3_user_characteristics"></a>
 
-This product is meant for different types of users:
+Two types of services are offered
 
-- **Businesses** that want to receive fiat money payments and trigger smart contracts when payments are made. They also want to allow their users to use their credit card instead of cryptocurrencies for specific contract calls.
+- **Regular Account** Services, allows the owner of the account to make payments with its credit card to trigger Ethereum Smart Contracts. This type of user is the **Cardea User**. It will most of the time be **Dapp Users**.
 
-- **Developers** can use the `sdk` and `widget` in order to offer our services to their users.
-
-- **Dapp users** can use our payment `portal` to trigger transactions on the Ethereum Blockchain upon credit card payment.
+- **Pro Account** Services, allows the owner of the account to create and manage Organizations. An Organization can store Contracts, WebApps and Methods informations and can receive credit card payments. These users will most likely be **Dapp Owners**.
 
 ## 2.4. Constraints
 <a name="2_4_constraints"></a>
 
-To use the service in an application, the business should register for an account and fill some specific informations (bank informations, smart contract informations and web application informations).
+To use the service in an application, the Cardea Pro User should create an Organization and fill some specific informations (Bank informations, Contract informations and WebApp informations).
 
-Users cannot use the portal to make any call they would like, only contracts and methods registered on our plateform can be called.
+Cardea Users cannot use the portal to make any call they would like, only Contracts and Methods registered on our platform can be called.
 
 ## 2.5. Assumption dependencies
 <a name="2_5_assumptions"></a>
@@ -162,8 +161,6 @@ You can find three different actor:
 - `Unauthenticated User` is someone on which we have no informations.
 - `Cardea Pro User` is someone with a Pro Account, used to manage, create Organizations ...
 - `Cardea User` is someone with a Regular Account, used to make payments
-
-`Cardea Pro User`
 
 | Actor | Goal |
 | :---: | :---: |
@@ -668,7 +665,7 @@ The service requires Smart Contracts to implement specific entry points methods 
 <a name="3_2_3_usability"></a>
 
 Cardea App should be usable on desktop and mobile web browsers.
-Cardea Widget should work on desktop and modile web browsers.
+Cardea Widget should work on desktop and mobile web browsers.
 
 ### 3.2.4. Reliability
 <a name="3_2_4_reliability"></a>
@@ -690,16 +687,16 @@ Cardea Widget should work for VanillaJs / React websites.
 ### 3.2.7. Design Constraints
 <a name="3_2_7_design_constraints"></a>
 
-Cardea Server should be built in a microservice fashion, allowing easier integration in scaling solution.
+Cardea Server should be built in a microservice fashion, allowing easier integration in scaling solutions.
 
 ## 3.3. External interfaces
 <a name="3_3_external_interfaces"></a>
 
 ### Graphical External Interfaces
 
-- **Cardea App** is a web application for the **Cardea users**, used to manage organizations, register applications and contracts and withdraw funds.
+- **Cardea App** is a web application for the **Cardea Pro Users**, used to manage organizations, register applications and contracts and withdraw funds.
 - **Cardea Widget** is a simple web component that creates a payment intent from a web application, and redirects the user on the **Cardea Portal** to proceed with payment.
-- **Cardea Portal** is a web page that manages the credit card payment of the **Dapp user**
+- **Cardea Portal** is a web page that manages the credit card payment of the **Cardea User**
 
 ### Non-graphical Interfaces
 
