@@ -73,15 +73,13 @@ This document is accessible by all the Cardea team. Only technical and product t
 <a name="2_overall_description"></a>
 
 <div style="text-align: center;">
-    <img src="resources/2_1_simplified_description.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 1. Cardea Platform simplified overview</i>
+    <img src="resources/cardea-2_1_simplified_description.svg" style="width:80%;max-width: 1000px;"/>
 </div>
 
 ## 2.1. Product perspective
 <a name="2_1_product_perspective"></a>
 <div style="text-align: center;">
-    <img src="resources/2_1_1_product_perspective.svg" style="width:80%;max-width: 1000px;"/>
+    <img src="resources/cardea-2_1_1_product_perspective.svg" style="width:80%;max-width: 1000px;"/>
     <br/>
     <i>Figure 2. Cardea alien system dependencies</i>
 </div>
@@ -210,57 +208,7 @@ You can find three different actor:
 <a name="3_1_2_use_case_view"></a>
 
 <div style="text-align: center;">
-    <img src="resources/3_1_2_1_use_case_view_cardea_app_user_management.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 3. Cardea App Use Case (User Management) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_2_use_case_view_cardea_app_organization_management.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 4. Cardea App Use Case (Organization Management) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_3_use_case_view_cardea_app_organization_payments.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 5. Cardea App Use Case (Organization Payments) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_4_use_case_view_cardea_app_organization_contract_interface.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 6. Cardea App Use Case (Organization Contract Interface) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_5_use_case_view_cardea_app_organization_webapp_interface.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 7. Cardea App Use Case (Organization Webapp Interface) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align:center;">
-    <img src="resources/3_1_2_6_use_case_view_cardea_widget.svg" style="width: 80%;max-width: 700px;"/>
-    <br/>
-    <i>Figure 8. Cardea Widget Use Case view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align:center;">
-    <img src="resources/3_1_2_7_use_case_view_cardea_portal.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 9. Cardea Portal Use Case view</i>
+    <img src="resources/cardea-3_1_2_1_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
 </div>
 
 ### List of Use Cases
@@ -708,9 +656,7 @@ Cardea Server should be built in a microservice fashion, allowing easier integra
 <a name="4_analysis_model"></a>
 
 <div style="text-align:center;">
-    <img src="resources/4_1_domain_model.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 10. Domain Model</i>
+    <img src="resources/cardea-4_1_domain_model.svg" style="width: 80%;max-width: 1000px;"/>
 </div>
 
 
