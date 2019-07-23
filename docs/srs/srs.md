@@ -4,13 +4,14 @@
 
 | Version | Prepared By | Email |
 | :---:   | :---:       | :---: |
-| 1.0 | Iulian Rotaru | iulian.rotaru@ticket721.com |
+| 1.1 | Iulian Rotaru | iulian.rotaru@ticket721.com |
 
 ## Document History
 
 | Version | Date | Description | Author |
 | :---:   | :---: | :---:      | :---:  |
 | 1.0 | 14/07/2019 | Initial Documentation | Iulian Rotaru |
+| 1.1 | 19/07/2019 | User Types Clarifications | Iulian Rotaru |
 
 ## Table of contents
 
@@ -49,7 +50,7 @@ This document will provide an overview of the Cardea Platform.
 ## 1.1. Purpose
 <a name="1_1_purpose"></a>
 
-An abstract description of the Cardea Platform is required as a communication and coordination mean between the technical and non-technical teams. This overview provides enough informations for one to understand the Platform and its functions without a deep technical knowledge.
+An abstract description of the Cardea Platform is required as a communication and coordination mean between the technical and non-technical teams. This overview provides enough information for one to understand the Platform and its functions without a deep technical knowledge.
 
 ## 1.2. Scope
 <a name="1_2_scope"></a>
@@ -63,29 +64,31 @@ This document is accessible by all the Cardea team. Only technical and product t
 | :---:        | :---:       |
 | `sdk`        | `software development kit` |
 | `api`        | `application public inteface` |
+| `Cardea User` | User with Regular Account on the platform (can make payments, cannot join or create Organizations) |
+| `Cardea Pro User` | User with Pro Account on the platform (cannot make payments, can join or create Organizations) |
+| `Unauthenticated User` | User not logged in the Cardea Platform |
+| `Dapp` | Decentralized Application (in our case, using the Ethereum Virtual Machine) |
 
 # 2. Overall description
 <a name="2_overall_description"></a>
 
 <div style="text-align: center;">
-    <img src="resources/2_1_simplified_description.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 1. Cardea Platform simplified overview</i>
+    <img src="resources/cardea-2_1_simplified_description.svg" style="width:80%;max-width: 1000px;"/>
 </div>
 
 ## 2.1. Product perspective
 <a name="2_1_product_perspective"></a>
 <div style="text-align: center;">
-    <img src="resources/2_1_1_product_perspective.svg" style="width:80%;max-width: 1000px;"/>
+    <img src="resources/cardea-2_1_1_product_perspective.svg" style="width:80%;max-width: 1000px;"/>
     <br/>
     <i>Figure 2. Cardea alien system dependencies</i>
 </div>
 
 The **Cardea Server** handles all requests from both Cardea users and Dapp users.
 
-The **Cardea App** is the web application for Cardea users to communicate with the server, create organization, edit informations ...
+The **Cardea App** is the web application for Cardea users to communicate with the server, create organization, edit information ...
 
-The **Cardea Portal** recovers payment informations from the dapp user and communicates with the Cardea Server in order to start the transaction process.
+The **Cardea Portal** recovers payment information from the dapp user and communicates with the Cardea Server in order to start the transaction process.
 
 The **Cardea Widget** integrates into a web application and eases the starting point of the whole transaction process.
 
@@ -95,14 +98,10 @@ The **Cardea Contracts** are a set of smart contracts on the Ethereum blockchain
 
 Together, they form the **Cardea Platform**.
 
-What is mentioned as the **Cardea user** is a business member with a pro account on the platform. It has the ability to create/join/edit organizations and setup payment channels on their applications.
-
-What is mentioned as the **Dapp user** is a user that has a normal account and uses its credit card to pay for transactions on the Ethereum Blockchain.
-
 ## 2.2. Product Functions
 <a name="2_2_product_functions"></a>
 
-The product provides an infrastructure for businesses using the Ethereum Virtual Machine to host and run Smart Contracts and wanting to enable credit card payments for their users. The role of the platform is to properly handle user input, payment and informations in order to translate everything into an Ethereum transaction.
+The product provides an infrastructure for businesses using the Ethereum Virtual Machine to host and run Smart Contracts and wanting to enable credit card payments for their users. The role of the platform is to properly handle user input, payment and information in order to translate everything into an Ethereum transaction.
 
 The product is perfectly suited for users not wanting to pay with cryptocurrencies for a payable Smart Contract method call, and could be a very good onboarding solution as it does not disable the possibility to use cryptocurrencies for the same actions. 
 
@@ -111,20 +110,18 @@ To make an example, imagine a contract selling tickets. This contract requires a
 ## 2.3. User Characteristics
 <a name="2_3_user_characteristics"></a>
 
-This product is meant for different types of users:
+Two types of services are offered
 
-- **Businesses** that want to receive fiat money payments and trigger smart contracts when payments are made. They also want to allow their users to use their credit card instead of cryptocurrencies for specific contract calls.
+- **Regular Account** Services, allows the owner of the account to make payments with its credit card to trigger Ethereum Smart Contracts. This type of user is the **Cardea User**. It will most of the time be **Dapp Users**.
 
-- **Developers** can use the `sdk` and `widget` in order to offer our services to their users.
-
-- **Dapp users** can use our payment `portal` to trigger transactions on the Ethereum Blockchain upon credit card payment.
+- **Pro Account** Services, allows the owner of the account to create and manage Organizations. An Organization can store Contracts, WebApps and Methods information and can receive credit card payments. These users will most likely be **Dapp Owners**.
 
 ## 2.4. Constraints
 <a name="2_4_constraints"></a>
 
-To use the service in an application, the business should register for an account and fill some specific informations (bank informations, smart contract informations and web application informations).
+To use the service in an application, the Cardea Pro User should create an Organization and fill some specific information (Bank information, Contract information and WebApp information).
 
-Users cannot use the portal to make any call they would like, only contracts and methods registered on our plateform can be called.
+Cardea Users cannot use the portal to make any call they would like, only Contracts and Methods registered on our platform can be called.
 
 ## 2.5. Assumption dependencies
 <a name="2_5_assumptions"></a>
@@ -159,11 +156,9 @@ The notation `Member(owner / admin)` would translate to `is a member with owner 
 
 You can find three different actor:
 
-- `Unauthenticated User` is someone on which we have no informations.
+- `Unauthenticated User` is someone on which we have no information.
 - `Cardea Pro User` is someone with a Pro Account, used to manage, create Organizations ...
 - `Cardea User` is someone with a Regular Account, used to make payments
-
-`Cardea Pro User`
 
 | Actor | Goal |
 | :---: | :---: |
@@ -213,57 +208,7 @@ You can find three different actor:
 <a name="3_1_2_use_case_view"></a>
 
 <div style="text-align: center;">
-    <img src="resources/3_1_2_1_use_case_view_cardea_app_user_management.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 3. Cardea App Use Case (User Management) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_2_use_case_view_cardea_app_organization_management.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 4. Cardea App Use Case (Organization Management) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_3_use_case_view_cardea_app_organization_payments.svg" style="width:80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 5. Cardea App Use Case (Organization Payments) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_4_use_case_view_cardea_app_organization_contract_interface.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 6. Cardea App Use Case (Organization Contract Interface) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align: center;">
-    <img src="resources/3_1_2_5_use_case_view_cardea_app_organization_webapp_interface.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 7. Cardea App Use Case (Organization Webapp Interface) view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align:center;">
-    <img src="resources/3_1_2_6_use_case_view_cardea_widget.svg" style="width: 80%;max-width: 700px;"/>
-    <br/>
-    <i>Figure 8. Cardea Widget Use Case view</i>
-</div>
-<br/>
-<br/>
-<br/>
-<div style="text-align:center;">
-    <img src="resources/3_1_2_7_use_case_view_cardea_portal.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 9. Cardea Portal Use Case view</i>
+    <img src="resources/cardea-3_1_2_1_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
 </div>
 
 ### List of Use Cases
@@ -285,8 +230,8 @@ You can find three different actor:
 | Code | `CAUM2` |
 | Importance | Critical |
 | Primary Actor | Cardea Pro User |
-| Preconditions | Cardea Pro User is logged in, Cardea Pro User provides valid account informations |
-| Postconditions | Account informations are modified with new provided informations |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User provides valid account information |
+| Postconditions | Account information are modified with new provided information |
 
 | []() | |
 | :---: | :---: |
@@ -295,7 +240,7 @@ You can find three different actor:
 | Importance | Critical |
 | Primary Actor | Cardea Pro User |
 | Preconditions | Cardea Pro User is logged in, Cardea Pro User is not an owner of an Organization |
-| Postconditions | Account and all informations are removed from the database |
+| Postconditions | Account and all information are removed from the database |
 
 | []() | |
 | :---: | :---: |
@@ -330,7 +275,7 @@ You can find three different actor:
 | Code | `CAUM7` |
 | Importance | Critical |
 | Primary Actor | Cardea Pro User |
-| Preconditions | Cardea Pro User is logged in, valid Organization informations are provided |
+| Preconditions | Cardea Pro User is logged in, valid Organization information are provided |
 | Postconditions | A new Organization is created, Cardea Pro User is member and has `owner` right |
 
 | []() | |
@@ -350,8 +295,8 @@ You can find three different actor:
 | Code | `CAOM1` |
 | Importance | Critical |
 | Primary Actor | Cardea Pro User |
-| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` rights, valid Organization informations are provided |
-| Postconditions | Organization informations are modified |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` rights, valid Organization information are provided |
+| Postconditions | Organization information are modified |
 
 | []() | |
 | :---: | :---: |
@@ -407,7 +352,7 @@ You can find three different actor:
 | Importance | Critical |
 | Primary Actor | Cardea Pro User |
 | Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of organization, Cardea Pro User has `owner`, `admin` or `payment` rights |
-| Postconditions | Bank informations are sent to the Cardea Pro User |
+| Postconditions | Bank information are sent to the Cardea Pro User |
 
 | []() | |
 | :---: | :---: |
@@ -471,7 +416,7 @@ You can find three different actor:
 | Code | `CAOCI2` |
 | Importance | Critical |
 | Primary Actor | Cardea Pro User |
-| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `contracts` rights, valid Contract informations are provided |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `contracts` rights, valid Contract information are provided |
 | Postconditions | The provided contract is added to the Organization |
 
 | []() | |
@@ -536,7 +481,7 @@ You can find three different actor:
 | Code | `CAOWI2` |
 | Importance | Critical |
 | Primary Actor | Cardea Pro User |
-| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `webapp` rights, valid WebApp informations are provided |
+| Preconditions | Cardea Pro User is logged in, Cardea Pro User is member of Organization, Cardea Pro User has `owner`, `admin` or `webapp` rights, valid WebApp information are provided |
 | Postconditions | New WebApp is added to the Organization |
 
 | []() | |
@@ -583,7 +528,7 @@ You can find three different actor:
 | Code | `CACW1` |
 | Importance | Critical |
 | Primary Actor | Unauthenticated User |
-| Preconditions | Method informations are provided (if required), Payment informations are provided (if required) |
+| Preconditions | Method information are provided (if required), Payment information are provided (if required) |
 | Postconditions | Payment Intent is created, Unauthenticated User is redirected to Cardea Portal with generated Payment Intent |
 
 #### Cardea Portal (CP)
@@ -621,8 +566,8 @@ You can find three different actor:
 | Code | `CACP4` |
 | Importance | Critical |
 | Primary Actor | Cardea User |
-| Preconditions | Cardea User is logged in, Cardea User provides valid account informations |
-| Postconditions | Account informations are modified with new provided informations |
+| Preconditions | Cardea User is logged in, Cardea User provides valid account information |
+| Postconditions | Account information are modified with new provided information |
 
 | []() | |
 | :---: | :---: |
@@ -631,7 +576,7 @@ You can find three different actor:
 | Importance | Critical |
 | Primary Actor | Cardea User |
 | Preconditions | Cardea User is logged in |
-| Postconditions | Account and all informations are removed from the database |
+| Postconditions | Account and all information are removed from the database |
 
 | []() | |
 | :---: | :---: |
@@ -668,7 +613,7 @@ The service requires Smart Contracts to implement specific entry points methods 
 <a name="3_2_3_usability"></a>
 
 Cardea App should be usable on desktop and mobile web browsers.
-Cardea Widget should work on desktop and modile web browsers.
+Cardea Widget should work on desktop and mobile web browsers.
 
 ### 3.2.4. Reliability
 <a name="3_2_4_reliability"></a>
@@ -678,8 +623,8 @@ Transactions should eventually proceed even if browser is closed. Cardea Server 
 ### 3.2.5. Security
 <a name="3_2_5_security"></a>
 
-User informations should be kept in a secure data storage solution.
-Credit Card informations should not be stored.
+User information should be kept in a secure data storage solution.
+Credit Card information should not be stored.
 Cardea Portal, Cardea App, Cardea Server should communicate in an encrypted manner.
 
 ### 3.3.6. Portability
@@ -690,16 +635,16 @@ Cardea Widget should work for VanillaJs / React websites.
 ### 3.2.7. Design Constraints
 <a name="3_2_7_design_constraints"></a>
 
-Cardea Server should be built in a microservice fashion, allowing easier integration in scaling solution.
+Cardea Server should be built in a microservice fashion, allowing easier integration in scaling solutions.
 
 ## 3.3. External interfaces
 <a name="3_3_external_interfaces"></a>
 
 ### Graphical External Interfaces
 
-- **Cardea App** is a web application for the **Cardea users**, used to manage organizations, register applications and contracts and withdraw funds.
+- **Cardea App** is a web application for the **Cardea Pro Users**, used to manage organizations, register applications and contracts and withdraw funds.
 - **Cardea Widget** is a simple web component that creates a payment intent from a web application, and redirects the user on the **Cardea Portal** to proceed with payment.
-- **Cardea Portal** is a web page that manages the credit card payment of the **Dapp user**
+- **Cardea Portal** is a web page that manages the credit card payment of the **Cardea User**
 
 ### Non-graphical Interfaces
 
@@ -711,9 +656,7 @@ Cardea Server should be built in a microservice fashion, allowing easier integra
 <a name="4_analysis_model"></a>
 
 <div style="text-align:center;">
-    <img src="resources/4_1_domain_model.svg" style="width: 80%;max-width: 1000px;"/>
-    <br/>
-    <i>Figure 10. Domain Model</i>
+    <img src="resources/cardea-4_1_domain_model.svg" style="width: 80%;max-width: 1000px;"/>
 </div>
 
 
